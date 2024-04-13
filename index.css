@@ -12,7 +12,7 @@ body, html {
   max-height: 1500px;
   position: relative;
   background: linear-gradient(0deg, black 0%, black 100%);
-  background-image: url(./pictures/wp3221416-wallpapers-dark.jpg);
+  background-image: url(./pictures/background.jpg);
   background-size: cover;
   background-attachment: fixed;
   overflow: hidden; 

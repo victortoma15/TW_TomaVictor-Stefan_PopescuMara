@@ -1,9 +1,29 @@
+function expandFilter() {
+    var filterButton = document.querySelector('.filter-button');
+    filterButton.classList.toggle('filter-expanded');
+    var filterText = document.querySelector('.filter-text');
+    if (filterButton.classList.contains('filter-expanded')) {
+        filterText.textContent = 'Choose filters';
+    } else {
+        filterText.textContent = 'Filter';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    var filterButton = document.getElementById('filterBtn');
+    var saveButton = document.getElementById('saveBtn');
+    var filterOptions = document.getElementById('filterOptions');
+  
+    filterButton.addEventListener('click', function () {
+      filterOptions.classList.toggle('show');
+    });
+  
+    saveButton.addEventListener('click', function () {
+      filterOptions.classList.remove('show');
+    });
+  });
 
 
-
-
-
-///subscribe popup  
 document.addEventListener('DOMContentLoaded', function () {
     var subscribeButton = document.getElementById('subscribeBtn');
     var closeButton = document.getElementById('closeBtn');
@@ -44,17 +64,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   ///search
   var input = document.getElementById("searchInput");
-  var closeSubsc = document.getElementById("container");
 
   input.addEventListener('click', function (){
     input.classList.add('open');
-  });
-  
-  closeSubsc.addEventListener('click', function (event){
-    if (!event.target.closest('.search-container')) {
-      input.classList.remove('open');
-  }
-  });
+  }) 
 
   input.addEventListener("keyup",function(event){
     if(event.key == "Enter"){
