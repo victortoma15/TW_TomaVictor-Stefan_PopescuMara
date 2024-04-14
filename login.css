@@ -1,0 +1,115 @@
+.container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-image: url(./pictures/background.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: auto; 
+    min-height: 100vh;
+    background-attachment: scroll;
+
+}
+.form-container {
+    background: rgba(3.28, 53.67, 82.01);
+    border-radius: 10px;
+    width: 475px;
+    height: 370px;
+    padding: 20px;
+    margin: 250px auto 0;
+    color: white;
+    text-align: center;
+}
+  
+.form-container h1 {
+    color: #8FA2BF;
+    font-family: Radley;
+    font-size: 43px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+}
+  
+.form-container input {
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 22px;
+    font-family: Radley;
+    font-size: 18px;
+    background: rgba(2, 31, 47, 0.71);
+    color:white;
+}
+  
+.form-container button {
+    width: 30%;
+    padding: 10px;
+    border: none;
+    border-radius: 22px;
+    background: rgba(2, 31, 47, 0.71);
+    color: white;
+    margin-top: 10px;
+    font-family: Radley;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: lowercase;
+}
+  
+.form-container a {
+    color: #abdde5;
+    text-decoration: none;
+    font-family: Radley;
+    font-size: 18px;
+}
+  
+.form-container a:hover {
+    text-decoration: underline;
+}
+  
+.account-toggle,
+.guest-toggle {
+    margin-top: 20px;
+}
+@media (max-width: 768px) {
+    .form-container {
+      width: 75%;
+      height: auto;
+      padding: 20px;
+      margin: 10% auto 0;
+    }
+  
+    .form-container h1 {
+      font-size: 30px;
+    }
+  
+
+    .form-container input{
+        width: 90%; 
+    }
+
+    .form-container button {
+      width: 95%;
+    }
+  
+    .account-toggle,
+    .guest-toggle {
+      font-size: 16px;
+      margin-top: 20px;
+    }
+}
+  
+  @media (max-width: 480px) {
+    .form-container {
+      margin-top: 60px;
+    }
+  
+    .logo {
+      left: 50%;
+      top: 20px;
+    }
+}
+  
