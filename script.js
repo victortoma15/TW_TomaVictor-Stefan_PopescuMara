@@ -1,14 +1,3 @@
-function expandFilter() {
-    var filterButton = document.querySelector('.filter-button');
-    filterButton.classList.toggle('filter-expanded');
-    var filterText = document.querySelector('.filter-text');
-    if (filterButton.classList.contains('filter-expanded')) {
-        filterText.textContent = 'Choose filters';
-    } else {
-        filterText.textContent = 'Filter';
-    }
-}
-
 document.addEventListener('DOMContentLoaded', function () {
     var filterButton = document.getElementById('filterBtn');
     var saveButton = document.getElementById('saveBtn');
@@ -64,10 +53,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
   ///search
   var input = document.getElementById("searchInput");
+  var closeSubsc = document.getElementById("container");
 
   input.addEventListener('click', function (){
     input.classList.add('open');
-  }) 
+  });
+  
+  closeSubsc.addEventListener('click', function (event){
+    if (!event.target.closest('.search-container')) {
+      input.classList.remove('open');
+  }
+  });
 
   input.addEventListener("keyup",function(event){
     if(event.key == "Enter"){

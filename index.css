@@ -8,7 +8,7 @@ body, html {
 
 .container {
   width: 100%;
-  height: 2000px;
+  height: 200vh;
   max-height: 1500px;
   position: relative;
   background: linear-gradient(0deg, black 0%, black 100%);
@@ -22,26 +22,28 @@ body, html {
   position: absolute;
   left: 50%; 
   transform: translateX(-50%); 
-  top: 280px; 
+  top: 40vh; 
   color: #8FA2BF;
-  font-size: 54px;
+  font-size: calc(2.5vw + 1rem);
   font-family: 'Archivo Black';
-  font-weight: 400;
   text-transform: uppercase;
-  word-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 }
 
 .globe-image {
-  width: 682.22px;
-  height: 596.01px;
+  width: 50vw;  
+  max-width: 682.22px; 
+  height: auto; 
   position: absolute;
-  left: 35%;
-  top: 450px;
+  left: 33%;
+  top: 32%;
+  transform: translate(-50%, -50%); 
   transform-origin: center center;
   mix-blend-mode: lighten;
-  
+  animation: rotateGlobe 20s linear infinite; 
 }
-
 .scroll {
   width: 57px;
   height: 70px;
@@ -77,6 +79,7 @@ body, html {
 .globe-image {
   animation: rotateGlobe 20s linear infinite; 
 }
+
 .content{
   width: 100%;
   text-align: center;
@@ -88,22 +91,21 @@ body, html {
   word-wrap: break-word;
   margin-top: 1125px;
 }
-
-
 .explore-button {
   background-color: rgba(3.28, 53.67, 82.01, 0.67);
   color: #8FA2BF;
-  font-size: 15px;
+  font-size: calc(1vw + 10px);
   font-family: 'Radley';
   font-weight: 400;
   text-transform: uppercase;
   border: none;
   text-decoration: none;
-  padding: 15px 30px;
-  border-radius: 30px;
+  padding: 1vw 2vw; 
+  border-radius: 5vw; 
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, padding 0.3s ease; 
 }
+
 
 .explore-button:hover {
   background-color: rgba(3.28, 53.67, 82.01, 0.8);
