@@ -1,19 +1,14 @@
-# Toma Victor-Stefan & PopescuMara - GloT
-
-
 <!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" href="documentation.css"/>
-    <title>
-        Documentation
-    </title>
 </head>
 
 <body>
 
 <h2>GloT (Global Terrorism Visualiser)</h2>
-<h2>Autori</h2>
+<h2>Cuprins</h2>
+<h3>Autori</h3>
 <ul>
     <li>Popescu Mara</li>
     <ul>
@@ -26,13 +21,13 @@
 </ul>
 
 <div class="contentinfo">
-    <ol role="directory">
+    <ul>
         <li>
             <a href="#introduction">
                 <span>1. </span>
                 Introducere
             </a>
-            <ol role="directory">
+            <ul role="directory">
                 <li>
                     <a href="#Purpose">
                         <span>1.1 </span>
@@ -63,17 +58,16 @@
                         Referințe
                     </a>
                 </li>
-            </ol>
+            </ul>
         </li>
-    </ol>
-
-    <ol role="directory">
+    </ul>
+    <ul>
         <li>
             <a href="#description">
                 <span>2. </span>
                 Descriere Generală
             </a>
-            <ol role="directory">
+            <ul role="directory">
                 <li>
                     <a href="#productDescription">
                         <span>2.1 </span>
@@ -104,17 +98,16 @@
                         Documentația pentru utilizator
                     </a>
                 </li>
-            </ol>
+            </ul>
         </li>
-    </ol>
-
-    <ol role="directory">
+    </ul>
+    <ul>
         <li>
             <a href="#requirements">
                 <span>3. </span>
                 Interfețele aplicației
             </a>
-            <ol role="directory">
+            <ul role="directory">
                 <li>
                     <a href="#UI">
                         <span>3.1 </span>
@@ -133,17 +126,16 @@
                         Interfața de comunicare
                     </a>
                 </li>
-            </ol>
+            </ul>
         </li>
-    </ol>
-
-    <ol role="directory">
+    </ul>
+    <ul>
         <li>
             <a href="#features">
                 <span>4. </span>
                 Caracteristici ale sistemului
             </a>
-            <ol role="directory">
+            <ul role="directory">
                 <li>
                     <a href="#Home">
                         <span>4.1 </span>
@@ -186,17 +178,16 @@
                         About
                     </a>
                 </li>
-            </ol>
+            </ul>
         </li>
-    </ol>
-
-    <ol role="directory">
+    </ul>
+    <ul role="directory">
         <li>
             <a href="#nonfunctionalRequirements">
                 <span>5. </span>
                 Funcționalități pentru protecție și securitate
             </a>
-            <ol role="directory">
+            <ul role="directory">
                 <li>
                     <a href="#Safety">
                         <span>5.1 </span>
@@ -215,14 +206,12 @@
                         Calitățile Software
                     </a>
                 </li>
-            </ol>
+            </ul>
         </li>
-    </ol>
+    </ul>
 </div>
-
 </br>
 </br>
-
 <div id="introduction">
     <h2>
         <span>1. </span>
@@ -306,7 +295,6 @@
         </p>
     </div>
     </br>
-
     <div id="Functions">
         <h3>
             <span>2.2 </span>
@@ -337,7 +325,6 @@
             <li>
                 Buton Already have an account? : redirecționează utilizatorul la pagina de Sign in.
             </li>
-
             <p>-- Pagina Setări cont c</p>
             <li>
                 Bara de navigare
@@ -404,7 +391,6 @@
         </ul>
     </div>
     </br>
-
     <div id="Characteristics">
         <h3>
             <span>2.3 </span>
@@ -417,7 +403,6 @@
         </ul>
     </div>
     </br>
-
     <div id="Environment">
         <h3>
             <span>2.4 </span>
@@ -428,7 +413,6 @@
         </p>
     </div>
     </br>
-
     <div id="Constraints">
         <h3>
             <span>2.5 </span>
@@ -445,10 +429,8 @@
     </div>
     </br>
 </div>
-
 </br>
 </br>
-
 <div id="requirements">
     <h2>
         <span>3. </span>
@@ -460,20 +442,19 @@
             Interfața utilizatorului
         </h3>
         <p>Sign Up</p>
-        <img src="../pictures/screenshots/register.png" width="750">
+        <img src="pictures/screenshots/register.png" width="750">
         <p>Sign In</p>
-        <img src="../pictures/screenshots/login.png" width="750">
+        <img src="/pictures/screenshots/login.png" width="750">
         <p>Pagina Acasă</p>
-        <img src="../pictures/screenshots/home_page.png" width="750">
+        <img src="/pictures/screenshots/home_page.png" width="750">
         <p>Atacuri Recente</p>
-        <img src="../pictures/screenshots/recent_attacks.png" width="750">
+        <img src="/pictures/screenshots/recent_attacks.png" width="750">
         <p>Pagina cu statistici</p>
-        <img src="../pictures/screenshots/statistics.png" width="750">
+        <img src="/pictures/screenshots/statistics.png" width="750">
         <p>About</p>
-        <img src="../pictures/screenshots/about.png" width="750">
+        <img src="/pictures/screenshots/about.png" width="750">
     </div>
     </br>
-
     <div id="softwareInterfaces">
         <h3>
             <span>3.2 </span>
@@ -484,7 +465,6 @@
         </p>
     </div>
     </br>
-
     <div id="communicationsInterfaces">
         <h3>
             <span>3.3 </span>
@@ -496,10 +476,8 @@
     </div>
     </br>
 </div>
-
 </br>
 </br>
-
 <div id="features">
     <h2>
         <span>4. </span>
@@ -515,7 +493,6 @@
         </p>
     </div>
     </br>
-
     <div id="Register">
         <h3>
             <span>4.2 </span>
@@ -526,7 +503,6 @@
         </p>
     </div>
     </br>
-
     <div id="Login">
         <h3>
             <span>4.3 </span>
@@ -537,7 +513,6 @@
         </p>
     </div>
     </br>
-
     <div id="Settings">
         <h3>
             <span>4.4 </span>
@@ -548,7 +523,6 @@
         </p>
     </div>
     </br>
-
     <div id="MyPref">
         <h3>
             <span>4.5 </span>
@@ -560,7 +534,6 @@
         </p>
     </div>
     </br>
-
     <div id="GroupP">
         <h3>
             <span>4.6 </span>
@@ -572,7 +545,6 @@
         </p>
     </div>
     </br>
-
     <div id="About">
         <h3>
             <span>4.7 </span>
@@ -602,7 +574,6 @@
         </p>
     </div>
     </br>
-
     <div id="Security">
         <h3>
             <span>5.2 </span>
@@ -614,7 +585,6 @@
         </p>
     </div>
     </br>
-
     <div id="Quality">
         <h3>
             <span>5.3 </span>
@@ -630,9 +600,7 @@
     </div>
     </br>
 </div>
-
 </br>
 </br>
 </body>
-
 </html>
