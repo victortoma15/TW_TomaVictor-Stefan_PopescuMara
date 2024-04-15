@@ -1,0 +1,26 @@
+html {
+    font-family: sans-serif;
+    font-family: Roboto;
+}
+
+body {
+    background-color:rgba(3.28, 53.67, 82.01, 0.67);
+    margin: auto;
+    padding: 10px;
+    max-width: 800px;
+    color: white;
+}
+
+ol li {
+    list-style-type: none;
+}
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: #1e1ed0;
+
+}
+
+h1,h2,h3,h4,h5,h6 {
+    letter-spacing: .0375em
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recent Attacks</title>
+    <link rel="stylesheet" href="recent_attacks.css" />
+    <link rel="stylesheet" href="global.css" />
+  </head>
+  <body>
+    <div id="container" class="container">
+      <div class="title">Statistics</div>
+      <div class="attack-container">
+        <div class="attack">
+          <img
+            class="attack-image"
+            src="pictures/graph.png"
+            alt="Attack Image"
+          />
+          <div class="attack-info">Terrorist attack around the globe</div>
+        </div>
+      </div>
+      <button id="filterBtn" class="filter-button">Filter</button>
+
+      <div id="filterOptions" class="filter-options hidden">
+        <div>
+          <input type="checkbox" id="option1" name="option1" />
+          <label for="option1">Guns</label>
+        </div>
+        <div>
+          <input type="checkbox" id="option2" name="option2" />
+          <label for="option2">Casualties</label>
+        </div>
+        <div>
+          <input type="checkbox" id="option3" name="option3" />
+          <label for="option3">Location</label>
+        </div>
+        <div>
+          <input type="checkbox" id="option4" name="option4" />
+          <label for="option4">Year</label>
+        </div>
+        <button id="saveBtn" class="save-button">Save</button>
+      </div>
+
+      <div class="header">
+        <div class="logo">GloT</div>
+        <div class="menu">
+          <a href="index.html" class="menu-item">Home</a>
+          <a href="recent_attacks.html" class="menu-item">Recent Attacks</a>
+          <a href="statistics.html" class="menu-item">Statistics</a>
+          <a href="about.html" class="menu-item">About</a>
+          <button id="subscribeBtn" class="menu-item">Subscribe</button>
+          <div id="popup" class="newsletter-popup hidden">
+            <span id="closeBtn" class="close-btn">&times;</span>
+            <h2>SUBSCRIBE TO OUR NEWSLETTER!</h2>
+            <div class="input-container">
+              <input type="email" placeholder="Email" />
+            </div>
+            <button id="joinBtn" type="submit">Join</button>
+          </div>
+        </div>
+
+        <div class="search-container">
+          <input
+            type="text"
+            class="search-bar"
+            id="searchInput"
+            placeholder="Search"
+          />
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
