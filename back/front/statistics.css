@@ -8,23 +8,16 @@
     overflow: auto;
 }
 
-.search-container {
-    display: flex;
-}
-
-.search-bar {
-    padding: 5px;
-    font-size: 16px;
-}
-
 .title {
     margin: 20px;
     color: #8FA2BF;
-    font-size: 36px;
-    font-family: 'Archivo Black', sans-serif;
+    font-size: 54px;
+    font-family: Archivo Black;
+    font-weight: 400;
     text-transform: uppercase;
     text-align: center;
     width: 100%;
+    top: 100px;
 }
 
 .button-section {
@@ -34,10 +27,19 @@
 }
 
 .chart-button {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
     padding: 10px 20px;
     margin: 0 10px;
     font-size: 16px;
+    transition-duration: 0.4s;
     cursor: pointer;
+}
+
+.chart-button:hover {
+    background-color: #033652ab;
+    color: white;
 }
 
 .statistics-section {
@@ -61,33 +63,34 @@ canvas {
 
 .export-section {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin: 20px;
     position: relative;
 }
 
-.export-button {
+.export-text {
     padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+    font-size: 26px;
+    font-family: Radley;
+    color: #8FA2BF;
 }
 
 .export-options {
     display: flex;
     justify-content: center;
-    position: absolute;
-    top: 50px;
-    gap: 10px;
+    align-items: center;
+    gap: 50px;
 }
 
 .export-option {
     background: none;
     border: none;
     cursor: pointer;
-    height: 30px;
-    width: 30px;
-}
-
-.hidden {
-    display: none;
+    height: 100px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

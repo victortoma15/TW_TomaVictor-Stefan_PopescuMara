@@ -17,11 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('showWeaponChart').addEventListener('click', async () => {
         if (currentChart) currentChart.destroy();
         const data = await fetchData('/api/statistics/attacksByWeapon');
-        currentChart = renderChart(ctx, data, 'Number of Attacks by Weapon Type', 'pie');
-    });
-    document.getElementById('exportBtn').addEventListener('click', () => {
-        const exportOptions = document.getElementById('exportOptions');
-        exportOptions.classList.toggle('hidden');
+        currentChart = renderChart(ctx, data, 'Number of Attacks by Weapon Type', 'line');
     });
 
     document.getElementById('exportCSV').addEventListener('click', () => {
@@ -62,7 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     data: values,
                     backgroundColor: type === 'pie' ? getRandomColors(data.length) : 'rgba(75, 192, 192, 0.2)',
                     borderColor: type === 'pie' ? getRandomColors(data.length) : 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
+                    borderWidth: 1,
+                    fill: type === 'line'
                 }]
             },
             options: {
@@ -93,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return colors;
     }
+
     function exportChart(chart, format) {
         const link = document.createElement('a');
         link.download = `chart.${format}`;
