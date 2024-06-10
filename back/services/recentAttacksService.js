@@ -15,7 +15,7 @@ async function getRecentAttacks() {
 async function getFilteredAttacks(startYear, endYear) {
     try {
         const [rows,fields] = await db.promise().query(sql.getYearFilterAttacks, [startYear, endYear]);
-        return rows;  
+        return rows;
     } catch (error) {
         console.error("Error fetching recent attacks:", error);
         throw new Error('Error fetching recent attacks')    ;

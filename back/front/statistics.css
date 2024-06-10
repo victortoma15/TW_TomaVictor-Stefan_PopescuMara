@@ -8,111 +8,86 @@
     overflow: auto;
 }
 
-.title {
-    left: 100px;
-    top: 146px;
-    position: absolute;
-    color: #8FA2BF;
-    font-size: 54px;
-    font-family: Archivo Black;
-    font-weight: 400;
-    text-transform: uppercase;
-    word-wrap: break-word;
+.search-container {
+    display: flex;
 }
 
-.attack-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    top: 350px; 
+.search-bar {
+    padding: 5px;
+    font-size: 16px;
+}
+
+.title {
+    margin: 20px;
+    color: #8FA2BF;
+    font-size: 36px;
+    font-family: 'Archivo Black', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
     width: 100%;
 }
 
-.attack {
+.button-section {
     display: flex;
-    align-items: center;
-    margin-bottom: 10px; 
+    justify-content: center;
+    margin: 20px;
 }
 
-.attack-image {
-    width: 640px;
-    height: 440px;
-    margin-right: 20px;
+.chart-button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-.attack-info {
-    color: #8FA2BF;
-    font-size: 20px;
-    font-family: Radley;
-    font-weight: 400;
-   
-    word-wrap: break-word;
+.statistics-section {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
 }
 
-@media (max-width: 1024px) {
-    .title {
-        left: 5%;
-        top: 15%;
-        font-size: 40px;
-  }
+.statistic {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    width: 80%;
+}
 
-  .attack-container {
-    align-items: center;
+canvas {
+    width: 100% !important;
+    height: 600px !important;
+}
+
+.export-section {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    position: relative;
+}
+
+.export-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.export-options {
+    display: flex;
+    justify-content: center;
     position: absolute;
-    left: 5%;
-    top: 350px; 
-    width: 90%;
-}
-  }
-  
-  @media (max-width: 768px) {
-    .title {
-        left: 5%;
-        top: 15%;
-        font-size: 30px;
-  }
-
-  .attack-container {
-    left: 5%;
-    top: 40%; 
-    width: 90%;
+    top: 50px;
+    gap: 10px;
 }
 
-.attack-image {
-    width: 250px;
-    height: 149px;
-    margin-right: 20px;
+.export-option {
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
 }
 
-.attack-info {
-    font-size: 15px;
+.hidden {
+    display: none;
 }
-  }
-  
-  @media (max-width: 520px) {
-    .title {
-        left: 5%;
-        top: 15%;
-        font-size: 27px;
-  }
-
-  .attack-container {
-    left: 5%;
-    top: 35%; 
-    width: 90%;
-}
-
-.attack-image {
-    width: 220px;
-    height: 119px;
-    margin-right: 20px;
-}
-
-.attack-info {
-    font-size: 12px;
-}
-
-}
-
-

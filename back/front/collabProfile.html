@@ -1,89 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Collaborator Profile Page</title>
     <link rel="stylesheet" href="global.css" />
     <link rel="stylesheet" href="collabProfile.css" />
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            async function fetchProfile() {
-                const token = localStorage.getItem('authToken');
-                if (!token) {
-                    alert('No token found, please log in.');
-                    window.location.href = '/';
-                    return;
-                }
+      document.addEventListener("DOMContentLoaded", function () {
+        async function fetchProfile() {
+          const token = localStorage.getItem("authToken");
+          if (!token) {
+            alert("No token found, please log in.");
+            window.location.href = "/";
+            return;
+          }
 
-                const response = await fetch('/api/profile', {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
+          const response = await fetch("/api/profile", {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
 
-                if (response.ok) {
-                    const profileData = await response.json();
-                    document.querySelector('.profile-info p').innerHTML = `<strong>username:</strong> ${profileData.username}`;
-                } else {
-                    alert('Failed to fetch profile data.');
-                }
-            }
+          if (response.ok) {
+            const profileData = await response.json();
+            document.querySelector(
+              ".profile-info p"
+            ).innerHTML = `<strong>username:</strong> ${profileData.username}`;
+          } else {
+            alert("Failed to fetch profile data.");
+          }
+        }
 
-            document.querySelector('nav ul li a[href="#logout"]').addEventListener('click', function() {
-                localStorage.clear(); 
-                window.location.href = '/';
-            });
+        document
+          .querySelector('nav ul li a[href="#logout"]')
+          .addEventListener("click", function () {
+            localStorage.clear();
+            window.location.href = "/";
+          });
 
-            fetchProfile();
-        });
+        fetchProfile();
+      });
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="header">
-            <div class="logo">GloT</div>
-            <div class="menu">
-                <a href="/main" class="menu-item">Home</a>
-                <a href="/recentAttacks" class="menu-item">Recent Attacks</a>
-                <a href="statistics.html" class="menu-item">Statistics</a>
-                <a href="about.html" class="menu-item">About</a>
+      <div class="header">
+        <div class="logo">GloT</div>
+        <div class="menu">
+          <a href="/main" class="menu-item">Home</a>
+          <a href="/recentAttacks" class="menu-item">Recent Attacks</a>
+          <a href="/statistics" class="menu-item">Statistics</a>
+          <a href="/about" class="menu-item">About</a>
+        </div>
+      </div>
+      <div class="content">
+        <nav>
+          <ul>
+            <li><a href="#">add article</a></li>
+            <li><a href="#">settings</a></li>
+            <li><a href="#logout">logout</a></li>
+          </ul>
+        </nav>
+        <main>
+          <h2>your account</h2>
+          <div class="profile">
+            <div class="profile-pic"></div>
+            <div class="profile-info">
+              <p><strong>username:</strong> your_username</p>
             </div>
-        </div>
-        <div class="content">
-            <nav>
-                <ul>
-                    <li><a href="#">add article</a></li>
-                    <li><a href="#">settings</a></li>
-                    <li><a href="#logout">logout</a></li>
-                </ul>
-            </nav>
-            <main>
-                <h2>your account</h2>
-                <div class="profile">
-                    <div class="profile-pic"></div>
-                    <div class="profile-info">
-                        <p><strong>username:</strong> your_username</p>
-                    </div>
-                </div>
-                <div class="articles">
-                    <h2>your articles</h2>
-                    <div class="article">
-                        <p>title</p>
-                        <button>delete article</button>
-                    </div>
-                    <div class="article">
-                        <p>title</p>
-                        <button>delete article</button>
-                    </div>
-                    <div class="article">
-                        <p>title</p>
-                        <button>delete article</button>
-                    </div>
-                </div>
-            </main>
-        </div>
+          </div>
+          <div class="articles">
+            <h2>your articles</h2>
+            <div class="article">
+              <p>title</p>
+              <button>delete article</button>
+            </div>
+            <div class="article">
+              <p>title</p>
+              <button>delete article</button>
+            </div>
+            <div class="article">
+              <p>title</p>
+              <button>delete article</button>
+            </div>
+          </div>
+        </main>
+      </div>
     </div>
-</body>
+  </body>
 </html>
