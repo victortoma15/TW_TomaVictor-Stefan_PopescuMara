@@ -6,6 +6,8 @@ const { registerUser } = require('./controller/registerController');
 const { sendingData } = require('./controller/profileController');
 const { attacksByRegion, attacksByMethod, attacksByWeapon } = require('./controller/statisticsController'); // Ensure this import is correct
 const { recentAttacks, weaponTypes, regions } = require('./controller/recentAttacksController');
+const { recentAttacksbySearch } = require('./controller/searchController');
+const { log } = require('console');
 
 const server = http.createServer((req, res) => {
     if (req.url === '/login' && req.method === 'POST') {
@@ -38,12 +40,11 @@ const server = http.createServer((req, res) => {
         attacksByMethod(req, res); // Route for fetching statistics data by method
     } else if (req.url === '/api/statistics/attacksByWeapon' && req.method === 'GET') {
         attacksByWeapon(req, res); // Route for fetching statistics data by weapon
-    } else if (req.url.match('\.css$')) {
-    } else if (req.url === '/api/weaponsType' && req.method === 'GET') {
-        console.log(req.url);
-        weaponTypes(req, res);
+    }else if (req.url === '/api/weaponsType' && req.method === 'GET') {
+        weaponTypes(req, res);  
+    }else if (req.url.startsWith('/api/searchResults') && req.method === 'GET') {
+        recentAttacksbySearch(req, res);
     }else if (req.url === '/api/regions' && req.method === 'GET') {
-        console.log(req.url);
         regions(req, res);
     }else if (req.url.match('\.css$')) {
         serveFile(res, path.join(__dirname, 'front', req.url), 'text/css');
@@ -52,6 +53,7 @@ const server = http.createServer((req, res) => {
     } else if (req.url.match('\.js$')) {
         serveFile(res, path.join(__dirname, 'front', req.url), 'application/javascript'); // Serve JS files
     } else {
+        //console.log(req);
         res.writeHead(404, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ message: "Route not found" }));
     }

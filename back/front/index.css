@@ -9,13 +9,16 @@ body, html {
 .container {
   width: 100%;
   height: 200vh;
-  max-height: 1500px;
   position: relative;
   background: linear-gradient(0deg, black 0%, black 100%);
   background-image: url(./pictures/background.jpg);
   background-size: cover;
   background-attachment: fixed;
   overflow: hidden; 
+}
+
+.container::-webkit-scrollbar{
+  display: none;
 }
 
 .title {
@@ -37,7 +40,7 @@ body, html {
   max-width: 682.22px; 
   height: auto; 
   position: absolute;
-  left: 33%;
+  left: 34%;
   top: 32%;
   transform: translate(-50%, -50%); 
   transform-origin: center center;
@@ -50,7 +53,9 @@ body, html {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 370px;
+  top: 27%;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   color: #8FA2BF;
   font-size: 14px;
@@ -63,8 +68,6 @@ body, html {
 .scroll span {
   font-size: 36px;
 }
-
-
 
 
 @keyframes rotateGlobe {
@@ -100,6 +103,7 @@ body, html {
   border: none;
   text-decoration: none;
   padding: 1vw 2vw; 
+  top: 70%;
   border-radius: 5vw; 
   cursor: pointer;
   transition: background-color 0.3s ease, padding 0.3s ease; 
