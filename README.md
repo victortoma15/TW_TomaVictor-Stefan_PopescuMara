@@ -457,23 +457,23 @@
             Interfața utilizatorului
         </h3>
         <p>Sign Up</p>
-        <img src="/pictures/screenshots/register.png" width="750">
+        <img src="back/front/pictures/screenshots/register.png" width="750">
         <p>Sign In</p>
-        <img src="/pictures/screenshots/login_page.png" width="750">
+        <img src="back/front/pictures/screenshots/login_page.png" width="750">
         <p>Pagina Acasă</p>
-        <img src="/pictures/screenshots/home_page.png" width="750">
+        <img src="back/front/pictures/screenshots/home_page.png" width="750">
         <p>Profil</p>
-        <img src="/pictures/screenshots/profile_page.png" width="750">
+        <img src="back/front/pictures/screenshots/profile_page.png" width="750">
         <p>Atacuri Recente</p>
-        <img src="/pictures/screenshots/recent_attacks.png" width="750">
+        <img src="back/front/pictures/screenshots/recent_attacks.png" width="750">
         <p>Pagina cu rezultatele căutarilor</p>
-        <img src="/pictures/screenshots/search_page.png" width="750">
+        <img src="back/front/pictures/screenshots/search_page.png" width="750">
         <p>Pagina cu statistici</p>
-        <img src="/pictures/screenshots/statistics1.png" width="750">
+        <img src="back/front/pictures/screenshots/statistics1.png" width="750">
         <br>
-        <img src="/pictures/screenshots/statistics2.png" width="750">
+        <img src="back/front/pictures/screenshots/statistics2.png" width="750">
         <p>About</p>
-        <img src="/pictures/screenshots/about.png" width="750">
+        <img src="back/front/pictures/screenshots/about.png" width="750">
     </div>
     </br>
     <div id="softwareInterfaces">
@@ -591,7 +591,7 @@
             <span>4.9 </span>
             Diagrama C4
         </h3>
-        <img src="pictures/screenshots/GLOT_C4.png" width="750">
+        <img src="back/front/pictures/screenshots/GLOT_C4.png" width="750">
     </div>
     </br>
 </div>
