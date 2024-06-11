@@ -6,6 +6,8 @@ const { registerUser } = require('./controller/registerController');
 const { sendingData } = require('./controller/profileController');
 const { attacksByRegion, attacksByMethod, attacksByWeapon } = require('./controller/statisticsController'); // Ensure this import is correct
 const { recentAttacks, weaponTypes, regions } = require('./controller/recentAttacksController');
+const { addArticle, getCollaboratorArticles, deleteCollaboratorArticle } = require('./controller/collaboratorController');
+const { getAllArticles, deletePost, deleteUser, fetchUsernames } = require('./controller/adminController');
 const { recentAttacksbySearch } = require('./controller/searchController');
 const { log } = require('console');
 
@@ -21,12 +23,16 @@ const server = http.createServer((req, res) => {
     } else if (req.url === '/register' && req.method === 'GET') {
         serveFile(res, path.join(__dirname, 'front', 'signup.html'), 'text/html');
     } else if (req.url === '/profile' && req.method === 'GET') {
-        serveFile(res, path.join(__dirname, 'front', 'collabProfile.html'), 'text/html');
+        serveFile(res, path.join(__dirname, 'front', 'profile.html'), 'text/html');
     } else if (req.url === '/recentAttacks' && req.method === 'GET') {
         serveFile(res, path.join(__dirname, 'front', 'recent_attacks.html'), 'text/html');
+    } else if (req.url === '/collaboratorProfile' && req.method === 'GET') {
+        serveFile(res, path.join(__dirname, 'front', 'collaboratorProfile.html'), 'text/html');
+    } else if (req.url === '/adminProfile' && req.method === 'GET') {
+        serveFile(res, path.join(__dirname, 'front', 'adminProfile.html'), 'text/html');
     } else if (req.url === '/searchResults' && req.method === 'GET') {
         serveFile(res, path.join(__dirname, 'front', 'searchResults.html'), 'text/html');
-    }else if (req.url === '/api/profile' && req.method === 'GET') {
+    } else if (req.url === '/api/profile' && req.method === 'GET') {
         sendingData(req, res);
     } else if (req.url === '/statistics' && req.method === 'GET') {
         serveFile(res, path.join(__dirname, 'front', 'statistics.html'), 'text/html');
@@ -46,7 +52,15 @@ const server = http.createServer((req, res) => {
         recentAttacksbySearch(req, res);
     }else if (req.url === '/api/regions' && req.method === 'GET') {
         regions(req, res);
-    }else if (req.url.match('\.css$')) {
+    } else if (req.url === '/getAllArticles' && req.method === 'GET') {
+        getAllArticles(req, res);
+    } else if (req.url === '/deletePost' && req.method === 'POST') {
+        deletePost(req, res);
+    } else if (req.url === '/deleteUser' && req.method === 'POST') {
+        deleteUser(req, res);
+    } else if (req.url === '/getAllUsernames' && req.method === 'GET') {
+        fetchUsernames(req, res);
+    } else if (req.url.match('\.css$')) {
         serveFile(res, path.join(__dirname, 'front', req.url), 'text/css');
     } else if (req.url.match('/pictures/')) {
         serveFile(res, path.join(__dirname, 'front', req.url), 'image/jpeg');

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collaborator Profile Page</title>
+    <link rel="stylesheet" href="global.css" />
+    <link rel="stylesheet" href="collaboratorProfile.css" />
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        async function fetchProfile() {
+          const token = localStorage.getItem("authToken");
+          if (!token) {
+            alert("No token found, please log in.");
+            window.location.href = "/";
+            return;
+          }
+
+          const response = await fetch("/api/profile", {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (response.ok) {
+            const profileData = await response.json();
+            document.querySelector(
+              ".profile-info p"
+            ).innerHTML = `<strong>username:</strong> ${profileData.username}`;
+            localStorage.setItem("username", profileData.username);
+            fetchArticles(profileData.username);
+          } else {
+            alert("Failed to fetch profile data.");
+          }
+        }
+
+        async function fetchArticles(username) {
+          const token = localStorage.getItem("authToken");
+
+          const response = await fetch("/getCollaboratorArticles", {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            const articles = data.articles;
+
+            const articlesContainer = document.getElementById("articles");
+            articlesContainer.innerHTML = ""; // Clear existing articles
+
+            articles.forEach((article) => {
+              const articleDiv = document.createElement("div");
+              articleDiv.className = "article";
+              articleDiv.innerHTML = `
+                <p>${article.city} event</p>
+                <button onclick="deleteArticle(${article.id})">Delete</button>
+              `;
+              articlesContainer.appendChild(articleDiv);
+            });
+          } else {
+            alert("Failed to fetch articles");
+          }
+        }
+
+        window.deleteArticle = async function (articleId) {
+          const token = localStorage.getItem("authToken");
+
+          const response = await fetch("/deleteCollaboratorArticle", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ articleId }),
+          });
+
+          if (response.ok) {
+            alert("Article deleted successfully");
+            // Refresh the list of articles
+            fetchArticles(localStorage.getItem("username"));
+          } else {
+            alert("Failed to delete article");
+          }
+        };
+
+        document
+          .querySelector('nav ul li a[href="#logout"]')
+          .addEventListener("click", function () {
+            localStorage.clear();
+            window.location.href = "/";
+          });
+
+        document
+          .getElementById("add-article")
+          .addEventListener("click", function () {
+            document.getElementById("article-form").style.display = "block";
+          });
+
+        document
+          .getElementById("close-form")
+          .addEventListener("click", function () {
+            document.getElementById("article-form").style.display = "none";
+          });
+
+        document
+          .getElementById("submit-article")
+          .addEventListener("click", async function (event) {
+            event.preventDefault();
+
+            const articleData = {
+              iyear: document.getElementById("iyear").value,
+              imonth: document.getElementById("imonth").value,
+              iday: document.getElementById("iday").value,
+              country_txt: document.getElementById("country_txt").value,
+              region_txt: document.getElementById("region_txt").value,
+              city: document.getElementById("city").value,
+              summary: document.getElementById("summary").value,
+              weaptype1_txt: document.getElementById("weaptype1_txt").value,
+              gname: document.getElementById("gname").value,
+              nkill: document.getElementById("nkill").value,
+            };
+
+            const token = localStorage.getItem("authToken");
+
+            const response = await fetch("/addArticle", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify(articleData),
+            });
+
+            if (response.ok) {
+              alert("Article added successfully");
+              document.getElementById("article-form").style.display = "none";
+              // Refresh the list of articles
+              fetchArticles(localStorage.getItem("username"));
+            } else {
+              alert("Failed to add article");
+            }
+          });
+
+        fetchProfile();
+      });
+    </script>
+    <style>
+      #article-form {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
+      #article-form input,
+      #article-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      #article-form button {
+        background-color: rgba(2, 9, 31, 0.737);
+        color: #8fa2bf;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="logo">GloT</div>
+        <div class="menu">
+          <a href="/main" class="menu-item">Home</a>
+          <a href="/recentAttacks" class="menu-item">Recent Attacks</a>
+          <a href="/statistics" class="menu-item">Statistics</a>
+          <a href="/about" class="menu-item">About</a>
+        </div>
+      </div>
+      <div class="content">
+        <nav>
+          <ul>
+            <li><a href="#" id="add-article">add article</a></li>
+            <li><a href="#">settings</a></li>
+            <li><a href="#logout">logout</a></li>
+          </ul>
+        </nav>
+        <main>
+          <h2>your account</h2>
+          <div class="profile">
+            <div class="profile-pic"></div>
+            <div class="profile-info">
+              <p><strong>username:</strong> your_username</p>
+            </div>
+          </div>
+          <div class="articles" id="articles">
+            <h2>your articles</h2>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <div id="article-form">
+      <h2>Add Article</h2>
+      <input type="number" id="iyear" placeholder="Year" />
+      <input type="number" id="imonth" placeholder="Month" />
+      <input type="number" id="iday" placeholder="Day" />
+      <input type="text" id="country_txt" placeholder="Country" />
+      <input type="text" id="region_txt" placeholder="Region" />
+      <input type="text" id="city" placeholder="City" />
+      <textarea id="summary" placeholder="Summary"></textarea>
+      <input type="text" id="weaptype1_txt" placeholder="Weapon Used" />
+      <input type="text" id="gname" placeholder="Terrorist Group" />
+      <input type="text" id="nkill" placeholder="Casualties" />
+
+      <button id="submit-article">Submit</button>
+      <button id="close-form">Close</button>
+    </div>
+  </body>
+</html>

@@ -1,62 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <link rel="stylesheet" href="login.css" />
     <link rel="stylesheet" href="global.css" />
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('loginForm').addEventListener('submit', async function(event) {
-                event.preventDefault();
-                
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('passwordLogin').value;
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("loginForm")
+          .addEventListener("submit", async function (event) {
+            event.preventDefault();
 
-                const response = await fetch('/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ username, password })
-                });
+            const username = document.getElementById("username").value;
+            localStorage.setItem("username", username);
+            const password = document.getElementById("passwordLogin").value;
 
-                if (response.ok) {
-                    const data = await response.json();
-                    const token = data.token;
-                    
-                    localStorage.setItem('authToken', token);
-
-                    alert('Login successful');
-                    window.location.href = '/main';
-                } else {
-                    const errorData = await response.json();
-                    alert('Login failed: ' + errorData.message);
-                }
+            const response = await fetch("/login", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ username, password }),
             });
-        });
+
+            if (response.ok) {
+              const data = await response.json();
+              const token = data.token;
+              const userType = data.type; // Use the 'type' field from the response
+
+              localStorage.setItem("authToken", token);
+              // localStorage.setItem("username", username);
+              localStorage.setItem("userType", userType); // Store user type in local storage
+              window.location.href = "/main";
+            } else {
+              const errorData = await response.json();
+              alert("Login failed: " + errorData.message);
+            }
+          });
+      });
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div id="loginForm" class="form-container">
-            <h1>WELCOME BACK</h1>
-            <form id="loginForm">
-                <input type="text" id="username" placeholder="username:" required />
-                <input type="password" id="passwordLogin" placeholder="password:" required />
-                <button type="submit">login</button>
-            </form>
-            <p class="account-toggle">
-                don't have an account? <a href="register">register</a>
-            </p>
-            <p class="guest-toggle">
-                not an admin? <a href="main">continue as a guest</a>
-            </p>
-        </div>
+      <div id="loginForm" class="form-container">
+        <h1>WELCOME BACK</h1>
+        <form id="loginForm">
+          <input type="text" id="username" placeholder="username:" required />
+          <input
+            type="password"
+            id="passwordLogin"
+            placeholder="password:"
+            required
+          />
+          <button type="submit">login</button>
+        </form>
+        <p class="account-toggle">
+          don't have an account? <a href="register">register</a>
+        </p>
+        <p class="guest-toggle">
+          not an admin? <a href="main">continue as a guest</a>
+        </p>
+      </div>
     </div>
     <div class="header">
-        <div class="logo">GloT</div>
+      <div class="logo">GloT</div>
     </div>
-</body>
+  </body>
 </html>
