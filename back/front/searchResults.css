@@ -5,17 +5,25 @@
     background-image: url(./pictures/background.jpg);
     background-size: cover;
     background-attachment: fixed;
-    overflow: hidden;
+    overflow-y: auto;
 }
 
-.main{
-    margin-top: 10%;
+.container::-webkit-scrollbar{
+    display: none;
+}
+
+.main {
+    margin-top: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .filter-bar {
     display: flex;
-    margin-left: 5%;
     gap: 10px;
+    margin-bottom: 20px;
 }
 
 .filter-item {
@@ -28,33 +36,56 @@
 }
 
 .results-title {
-    font-size: 24px;
+    font-size: 30px;
     margin: 30px 0;
     color: #8FA2BF;
 }
 
 .results-container {
     display: flex;
-    gap: 20px;
+    flex-wrap: nowrap;
+    gap: 10px;
+    overflow-x: scroll;
+    width: 90%;
+    margin: 0 auto;
     justify-content: center;
+    scroll-behavior: smooth;
+}
+
+.results-container p{
+    font-size: 40px;
+    color: #8FA2BF;
+    justify-content: center;
+    align-items: center;
+}
+
+.results-container::-webkit-scrollbar{
+    display: none;
 }
 
 .result {
+    flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.1); 
-    padding: 10px;
-    border-radius: 5px;
+    justify-content: center;
+    background-color: #033652ab; 
+    padding: 20px;
+    margin-right: 10px;
+    border-radius: 20px;
+    width: 30%;
+    height: 40%;
+    scroll-snap-align: start;
 }
 
 .result img {
-    max-width: 150px;
-    border-radius: 5px;
+    width: 300px;
+    height: 200px;
     margin-bottom: 10px;
 }
 
 .result-details {
     text-align: center;
+    color: #9ca9bd;
     font-size: 14px;
 }

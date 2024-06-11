@@ -6,17 +6,20 @@ async function recentAttacks(req, res) {
     const endYear = parsedUrl.searchParams.get('endYear');
     const weaponType = parsedUrl.searchParams.get('weaponType');
     const region = parsedUrl.searchParams.get('region');
-  console.log(startYear);
+    const numberOfCounts = parsedUrl.searchParams.get('number');
+
+    console.log(numberOfCounts + " " + startYear + " " + endYear);
+
   let data;
   if (startYear && endYear) {
-    data = await getFilteredAttacksByYear(startYear, endYear);
+    data = await getFilteredAttacksByYear(startYear, endYear, numberOfCounts);
   } else if(weaponType){
-    data = await getFilteredAttacksByWeapon(weaponType);
+    data = await getFilteredAttacksByWeapon(weaponType,numberOfCounts);
   } else if(region){
-    data = await getFilteredAttacksByRegion(region);
-  }
+    data = await getFilteredAttacksByRegion(region,numberOfCounts);
+  } 
   else {
-    data = await getRecentAttacks();
+    data = await getRecentAttacks(numberOfCounts);
   }
 
   res.writeHead(200, { 'Content-Type': 'application/json' });

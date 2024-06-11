@@ -38,9 +38,103 @@
 .attack-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     width: 100%;
     
+}
+
+.filter-button {
+    width: 95px;
+    height: 40px;
+    left: 100px;
+    top: 220px;
+    position: relative;
+    background: rgba(3.28, 53.67, 82.01, 0.67);
+    color: #8FA2BF;
+    font-size: 18px;
+    font-family: Radley;
+    text-transform: lowercase;
+    border-radius: 20px;
+    border: none;
+    display:flex;
+    word-wrap: break-word;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    transition: width 0.3s, height 0.3s; 
+}
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+    background-color: rgba(3.28, 53.67, 82.01, 0.67);
+    color: #8FA2BF;
+    padding: 20px;
+    border-radius: 20px; 
+    position: absolute;
+    left: 100px;
+    top: 270px; 
+    z-index: 10;
+    font-family: Radley;
+    max-height: 300px;
+  overflow-y: auto;
+}
+  
+  
+  .filter-options.show {
+    display: block; 
+}
+  
+  
+  .save-button {
+    background-color:  rgba(2, 31, 47, 0.834);
+    color: white; 
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block; 
+    margin-top: 10px; 
+}
+
+.load-more-button{
+    width: 95px;
+    height: 40px;
+    left: 200px;
+    top: 22%;
+    position: relative;
+    background: rgba(3.28, 53.67, 82.01, 0.67);
+    color: #8FA2BF;
+    font-size: 18px;
+    font-family: Radley;
+    text-transform: lowercase;
+    border-radius: 20px;
+    border: none;
+    display:flex;
+    word-wrap: break-word;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+.load-less-button{
+    width: 95px;
+    height: 40px;
+    left: 300px;
+    top: 17.2%;
+    position: relative;
+    background: rgba(3.28, 53.67, 82.01, 0.67);
+    color: #8FA2BF;
+    font-size: 18px;
+    font-family: Radley;
+    text-transform: lowercase;
+    border-radius: 20px;
+    border: none;
+    display:flex;
+    word-wrap: break-word;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
 }
 
 .attack {
