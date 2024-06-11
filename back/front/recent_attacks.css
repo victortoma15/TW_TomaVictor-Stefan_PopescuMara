@@ -1,0 +1,189 @@
+.container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-image: url(./pictures/background.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.scrollable-attack-container {
+    width: 100%;
+    max-width: 80%; 
+    height: 500px; 
+    overflow-y: scroll;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 0 auto; 
+    position: absolute;
+    top: 35%; 
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.title {
+    left: 50%;
+    top: 146px;
+    position: absolute;
+    transform: translateX(-50%);
+    color: #8FA2BF;
+    font-size: 54px;
+    font-family: Archivo Black;
+    font-weight: 400;
+    text-transform: uppercase;
+    word-wrap: break-word;
+}
+
+.attack-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    
+}
+
+.attack {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 15px;
+    background-color: #03273b63;
+}
+
+.attack-image {
+    width: 317px;
+    height: 216px;
+    margin-right: 20px;
+}
+
+.attack-info {
+    color: #9ca9bd;
+    font-size: 20px;
+    font-family: Radley;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.year-options {
+    display: none;
+    position: absolute;
+    left: 10%;
+    top: auto;
+    padding: 10px;
+  }
+
+  .year-options.show {
+    display: block;
+    position: relative;
+  }
+
+  .weapon-options {
+    display: none;
+    position: absolute;
+    left: 10%;
+    top: auto;
+    padding: 10px;
+  }
+
+  .weapon-options.show {
+    display: block;
+    position: relative;
+  }
+
+  .region-options {
+    display: none;
+    position: absolute;
+    left: 10%;
+    top: auto;
+    padding: 10px;
+  }
+
+  .region-options.show {
+    display: block;
+    position: relative;
+  }
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .title {
+        left: 50%;
+        top: 15%;
+        font-size: 40px;
+        transform: translateX(-50%);
+    }
+
+    .scrollable-attack-container {
+        top: 350px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+    }
+
+    .attack-container {
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .title {
+        left: 50%;
+        top: 15%;
+        font-size: 30px;
+        transform: translateX(-50%);
+    }
+
+    .scrollable-attack-container {
+        top: 40%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+    }
+
+    .attack-container {
+        align-items: center;
+    }
+
+    .attack-image {
+        width: 250px;
+        height: 149px;
+        margin-right: 20px;
+    }
+
+    .attack-info {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 520px) {
+    .title {
+        left: 50%;
+        top: 15%;
+        font-size: 27px;
+        transform: translateX(-50%);
+    }
+
+    .scrollable-attack-container {
+        top: 35%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+    }
+
+    .attack-container {
+        align-items: center;
+    }
+
+    .attack-image {
+        width: 220px;
+        height: 119px;
+        margin-right: 20px;
+    }
+
+    .attack-info {
+        font-size: 12px;
+    }
+}

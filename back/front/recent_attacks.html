@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recent Attacks</title>
+  <link rel="stylesheet" href="recent_attacks.css" />
+  <link rel="stylesheet" href="global.css" />
+  <style>
+    .scrollable-attack-container::-webkit-scrollbar {
+      width: 6px;
+      border-radius: 22px;
+    }
+
+    .scrollable-attack-container::-webkit-scrollbar-track {
+      background: #033652ab;
+    }
+
+    .scrollable-attack-container::-webkit-scrollbar-thumb {
+      background-color: #033652ab;
+      border-radius: 22px;
+      border: 3px solid #033652;
+    }
+
+    .scrollable-attack-container {
+      scrollbar-width: thin;
+      border-radius: 22px;
+      scrollbar-color: #033652ab #03365200;
+    }
+  </style>
+</head>
+<body>
+  <div id="container" class="container">
+    <div class="title">Recent Attacks</div>
+    <div class="scrollable-attack-container">
+      <div class="attack-container"></div>
+    </div>
+    <button id="filterBtn" class="filter-button">Filter</button>
+
+    <div id="filterOptions" class="filter-options hidden">
+        <div>
+          <input type="checkbox" id="option1" name="option1" />
+          <label for="option1" id="weaponLabel">Weapons</label>
+          <div id="weaponOptions" class="weapon-options"></div>
+        </div>
+      <div>
+        <input type="checkbox" id="option3" name="option3" />
+        <label for="option3" id="regionLabel">Region</label>
+        <div id="regionOptions" class="region-options">
+          <!-- Year checkboxes will be generated here -->
+        </div>
+      </div>
+      <div>
+        <input type="checkbox" id="option4" name="option4" />
+        <label for="option4" id="yearLabel">Year</label>
+        <div id="yearOptions" class="year-options">
+          <!-- Year checkboxes will be generated here -->
+        </div>
+      </div>
+      <button id="saveBtn" class="save-button">Save</button>
+    </div>
+
+    <div class="header">
+      <div class="logo">GloT</div>
+      <div class="menu">
+        <a href="/main" class="menu-item">Home</a>
+        <a href="/profile" class="menu-item">Profile</a>
+        <a href="statistics.html" class="menu-item">Statistics</a>
+        <a href="about.html" class="menu-item">About</a>
+        <button id="subscribeBtn" class="menu-item">Subscribe</button>
+        <div id="popup" class="newsletter-popup hidden">
+          <span id="closeBtn" class="close-btn">&times;</span>
+          <h2>SUBSCRIBE TO OUR NEWSLETTER!</h2>
+          <div class="input-container">
+            <input type="email" placeholder="Email" />
+          </div>
+          <button id="joinBtn" type="submit">Join</button>
+        </div>
+      </div>
+
+      <div class="search-container">
+        <input type="text" class="search-bar" id="searchInput" placeholder="Search" />
+        <div id="searchResults" class="search-results"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const images = [
+        "attack1.jpg", "attack2.jpg", "attack3.jpg", "attack4.jpg", "attack5.jpg",
+        "attack6.jpg", "attack7.jpg", "attack8.jpg", "attack9.jpg", "attack10.jpg",
+        "attack11.jpg", "attack12.jpg", "attack13.jpg", "attack14.jpg", "attack15.jpg",
+        "attack16.jpg", "attack17.jpg", "attack18.jpg", "attack19.jpg", "nuke.jpg"
+      ];
+  
+      // Function to shuffle the images array
+      function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+
+      function fetchAndDisplayWeaponTypes() {
+        fetch('/api/weaponsType')
+            .then(response => response.json())
+            .then(weapons => {
+                weapons.forEach((weapon, index) => {
+                    const weaponDiv = document.createElement('div');
+                    weaponDiv.innerHTML = `
+                        <input type="checkbox" id="weapon${index}" name="weaponType" value="${weapon.weaptype1_txt}" />
+                        <label for="weapon${index}">${weapon.weaptype1_txt}</label>
+                    `;
+                    weaponOptions.appendChild(weaponDiv);
+                });
+            })
+            .catch(error => console.error('Error fetching weapon types:', error));
+    }
+    fetchAndDisplayWeaponTypes();
+    function fetchAndDisplayRegions() {
+        fetch('/api/regions')
+            .then(response => response.json())
+            .then(regions => {
+                regions.forEach((region, index) => {
+                    const regionDiv = document.createElement('div');
+                    regionDiv.innerHTML = `
+                        <input type="checkbox" id="region${index}" name="region" value="${region.region_txt}" />
+                        <label for="region${index}">${region.region_txt}</label>
+                    `;
+                    regionOptions.appendChild(regionDiv);
+                });
+            })
+            .catch(error => console.error('Error fetching regions:', error));
+    }
+    fetchAndDisplayRegions();
+  
+      // Function to fetch and display attacks
+      function fetchAndDisplayAttacks(yearRange = null, weaponType = null, region = null) {
+        let url = '/api/recentAttacks';
+        if (yearRange) {
+            url += `?startYear=${yearRange.start}&endYear=${yearRange.end}`;
+        }
+        if (weaponType) {
+            url += `${yearRange ? '&' : '?'}weaponType=${weaponType}`;
+        }
+        if (region) {
+            url += `${yearRange || weaponType ? '&' : '?'}region=${region}`;
+        }
+  
+        const shuffledImages = shuffle([...images]);
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            const attackContainer = document.querySelector(".attack-container");
+            attackContainer.innerHTML = ""; // Clear previous attacks
+            const attacks = data; // Adjust this index based on your actual data structure
+  
+            attacks.forEach((attack, index) => {
+              const attackDiv = document.createElement("div");
+              attackDiv.className = "attack";
+  
+              const attackImage = document.createElement("img");
+              attackImage.className = "attack-image";
+              const imagePath = `pictures/attacks/${shuffledImages[index % shuffledImages.length]}`;
+              attackImage.src = imagePath;
+              attackImage.alt = "Attack Image";
+  
+              const attackInfo = document.createElement("div");
+              attackInfo.className = "attack-info";
+              attackInfo.innerHTML = `
+                Location: ${attack.city}, ${attack.country_txt}, ${attack.region_txt}<br />
+                Casualties: ${attack.nkill} <br />
+                Date: ${attack.iday} ${new Date(attack.iyear, attack.imonth - 1, attack.iday).toLocaleString('default', { month: 'long' })} ${attack.iyear}<br />
+                Details: ${attack.summary}<br />
+                Weapon: ${attack.weaptype1_txt}
+              `;
+  
+              attackDiv.appendChild(attackImage);
+              attackDiv.appendChild(attackInfo);
+              attackContainer.appendChild(attackDiv);
+            });
+          })
+          .catch(error => console.error('Error fetching attack data:', error));
+      }
+  
+      // Initial fetch
+      fetchAndDisplayAttacks();
+  
+      // Variables to store filter settings
+      let filterSettings = {
+        startYear: null,
+        endYear: null,
+        weaponType: null,
+        region: null
+      };
+  
+      // Toggle filter options visibility
+      var filterButton = document.getElementById('filterBtn');
+      var saveButton = document.getElementById('saveBtn');
+      var filterOptions = document.getElementById('filterOptions');
+      var yearLabel = document.getElementById('yearLabel');
+      var yearOptions = document.getElementById('yearOptions');
+      var weaponLabel = document.getElementById('weaponLabel');
+      var weaponOptions = document.getElementById('weaponOptions');
+      var regionLabel = document.getElementById('regionLabel');
+      var regionOptions = document.getElementById('regionOptions');
+  
+      filterButton.addEventListener('click', function () {
+        filterOptions.classList.toggle('show');
+      });
+  
+      yearLabel.addEventListener('click', function () {
+        yearOptions.classList.toggle('show');
+      });
+
+      weaponLabel.addEventListener('click', function () {
+        weaponOptions.classList.toggle('show');
+      });
+
+      regionLabel.addEventListener('click', function () {
+        regionOptions.classList.toggle('show');
+      });
+  
+      // Generate year checkboxes
+      for (let year = 1970; year <= 2017; year += 5) {
+        const yearCheckbox = document.createElement('div');
+        yearCheckbox.innerHTML = `
+          <input type="checkbox" id="year${year}" name="year${year}" data-start="${year}" data-end="${year + 4}" />
+          <label for="year${year}">${year} - ${year + 4}</label>
+        `;
+        yearOptions.appendChild(yearCheckbox);
+      }
+
+      
+  
+      // Event listener for year checkboxes
+      yearOptions.addEventListener('change', function (event) {
+        const checkboxes = yearOptions.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+          if (checkbox !== event.target) {
+            checkbox.checked = false;
+          }
+        });
+  
+        if (event.target.checked) {
+          filterSettings.startYear = event.target.getAttribute('data-start');
+          filterSettings.endYear = event.target.getAttribute('data-end');
+        } else {
+          filterSettings.startYear = null;
+          filterSettings.endYear = null;
+        }
+      });
+
+      weaponOptions.addEventListener('change', function (event) {
+        const checkboxes = weaponOptions.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+          if (checkbox !== event.target) {
+            checkbox.checked = false;
+          }
+        });
+  
+        if (event.target.checked) {
+          filterSettings.weaponType = event.target.getAttribute('value');
+        } else {
+          filterSettings.weaponType = null;
+        }
+      });
+
+      regionOptions.addEventListener('change', function (event) {
+        const checkboxes = regionOptions.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+          if (checkbox !== event.target) {
+            checkbox.checked = false;
+          }
+        });
+  
+        if (event.target.checked) {
+          filterSettings.region = event.target.getAttribute('value');
+        } else {
+          filterSettings.region = null;
+        }
+      });
+  
+      // Apply filters when Save button is clicked
+      saveButton.addEventListener('click', function () {
+        filterOptions.classList.remove('show');
+        if (filterSettings.startYear && filterSettings.endYear) {
+          fetchAndDisplayAttacks({ start: filterSettings.startYear, end: filterSettings.endYear });
+        }else if(filterSettings.weaponType) {
+          fetchAndDisplayAttacks(null, filterSettings.weaponType);
+        }else if(filterSettings.region){
+          fetchAndDisplayAttacks(null, null, filterSettings.region);
+        }
+        else {
+          fetchAndDisplayAttacks();
+        }
+      });
+
+      var searchInput = document.getElementById("searchInput");
+      searchInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          const query = searchInput.value.trim();
+          if (query.length > 0) {
+            window.location.href = `/searchResults`;
+          }
+        }
+      });
+
+  
+      // Subscribe button functionality
+      var subscribeButton = document.getElementById('subscribeBtn');
+      var closeButton = document.getElementById('closeBtn');
+      var joinButton = document.getElementById('joinBtn');
+      var newsletterPopup = document.getElementById('popup');
+      var emailInput = newsletterPopup.querySelector('input[type="email"]');
+  
+      subscribeButton.addEventListener('click', function () {
+        newsletterPopup.classList.remove('hidden');
+      });
+  
+      function closePopup() {
+        newsletterPopup.classList.add('hidden');
+        emailInput.value = '';
+      }
+  
+      closeButton.addEventListener('click', closePopup);
+  
+      joinButton.addEventListener('click', function () {
+        var email = emailInput.value;
+        if (email && email.includes('@') && email.includes('.')) {
+          closePopup();
+        } else {
+          alert('Please enter a valid email address.');
+        }
+      });
+  
+      // Search functionality
+      var input = document.getElementById("searchInput");
+      var closeSubsc = document.getElementById("container");
+  
+      input.addEventListener('click', function () {
+        input.classList.add('open');
+      });
+  
+      closeSubsc.addEventListener('click', function (event) {
+        if (!event.target.closest('.search-container')) {
+          input.classList.remove('open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

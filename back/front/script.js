@@ -65,9 +65,9 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   });
 
-  input.addEventListener("keyup",function(event){
-    if(event.key == "Enter"){
-      input.classList.remove('open');
-    }
+
+  // script.js
+
  
-  });
+
+

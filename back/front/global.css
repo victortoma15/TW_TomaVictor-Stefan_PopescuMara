@@ -45,7 +45,7 @@ body, html {
     padding-right: 5px;
     border: none;
     border-radius: 20px;
-    background-color: rgba(3.28, 53.67, 82.01, 0.67);
+    background-color: #033652ab;
     color: #8FA2BF;
     font-size: 15px;
     font-family: Radley;
@@ -58,6 +58,26 @@ body, html {
   
 .search-bar.open {
     width: 300px; 
+}
+
+.search-results {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  position: absolute;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 100%;
+  display: none;
+  z-index: 10;
+}
+
+.search-results .result-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.search-results .result-item:hover {
+  background-color: #f0f0f0;
 }
   
 
