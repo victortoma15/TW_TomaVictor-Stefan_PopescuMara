@@ -3,7 +3,7 @@ const recentAttacksSql = {
         `SELECT * 
          FROM attacks 
          ORDER BY iyear DESC, imonth DESC, iday DESC 
-         LIMIT 20`,
+         LIMIT ?;`,
 
     getYearFilterAttacks:
       `
@@ -14,7 +14,7 @@ const recentAttacksSql = {
             FROM attacks
             WHERE iyear BETWEEN ? AND ?
           ) subquery
-        WHERE row_num <= 4
+        WHERE row_num <= ?
         ORDER BY iyear ASC, imonth ASC, iday ASC
     `,
 
@@ -29,7 +29,7 @@ const recentAttacksSql = {
     FROM attacks
     WHERE weaptype1_txt = ?
     ORDER BY nkill DESC
-    LIMIT 20;
+    LIMIT ?;
     `,
 
     getRegions:
@@ -41,7 +41,7 @@ const recentAttacksSql = {
     FROM attacks
     WHERE region_txt = ?
     ORDER BY nkill DESC
-    LIMIT 20;
+    LIMIT ?;
     `
 }
 
