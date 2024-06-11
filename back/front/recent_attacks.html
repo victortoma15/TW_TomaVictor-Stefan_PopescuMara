@@ -67,15 +67,6 @@
           <a href="#" id="profile-link" class="menu-item">Profile</a>
           <a href="/statistics" class="menu-item">Statistics</a>
           <a href="/about" class="menu-item">About</a>
-          <button id="subscribeBtn" class="menu-item">Subscribe</button>
-          <div id="popup" class="newsletter-popup hidden">
-            <span id="closeBtn" class="close-btn">&times;</span>
-            <h2>SUBSCRIBE TO OUR NEWSLETTER!</h2>
-            <div class="input-container">
-              <input type="email" placeholder="Email" />
-            </div>
-            <button id="joinBtn" type="submit">Join</button>
-          </div>
         </div>
 
         <div class="search-container">
@@ -353,33 +344,6 @@
             if (query.length > 0) {
               window.location.href = `/searchResults`;
             }
-          }
-        });
-
-        // Subscribe button functionality
-        var subscribeButton = document.getElementById("subscribeBtn");
-        var closeButton = document.getElementById("closeBtn");
-        var joinButton = document.getElementById("joinBtn");
-        var newsletterPopup = document.getElementById("popup");
-        var emailInput = newsletterPopup.querySelector('input[type="email"]');
-
-        subscribeButton.addEventListener("click", function () {
-          newsletterPopup.classList.remove("hidden");
-        });
-
-        function closePopup() {
-          newsletterPopup.classList.add("hidden");
-          emailInput.value = "";
-        }
-
-        closeButton.addEventListener("click", closePopup);
-
-        joinButton.addEventListener("click", function () {
-          var email = emailInput.value;
-          if (email && email.includes("@") && email.includes(".")) {
-            closePopup();
-          } else {
-            alert("Please enter a valid email address.");
           }
         });
 
