@@ -1,167 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search Results</title>
-    <link rel="stylesheet" href="global.css">
-    <link rel="stylesheet" href="searchResults.css">
-</head>
-<body>
+    <link rel="stylesheet" href="global.css" />
+    <link rel="stylesheet" href="searchResults.css" />
+  </head>
+  <body>
     <div class="container">
-        <div class="header">
-            <div class="logo">GloT</div>
-            <div class="menu">
-              <a href="/main" class="menu-item">Home</a>
-              <a href="/profile" class="menu-item">Profile</a>
-              <a href="/recentAttacks" class="menu-item">Recent attacks</a>
-              <a href="statistics.html" class="menu-item">Statistics</a>
-              <a href="about.html" class="menu-item">About</a>
-              <button id="subscribeBtn" class="menu-item">Subscribe</button>
-              <div id="popup" class="newsletter-popup hidden">
-                <span id="closeBtn" class="close-btn">&times;</span>
-                <h2>SUBSCRIBE TO OUR NEWSLETTER!</h2>
-                <div class="input-container">
-                  <input type="email" placeholder="Email" />
-                </div>
-                <button id="joinBtn" type="submit">Join</button>
-              </div>
+      <div class="header">
+        <div class="logo">GloT</div>
+        <div class="menu">
+          <a href="/main" class="menu-item">Home</a>
+          <a href="/profile" class="menu-item">Profile</a>
+          <a href="/recentAttacks" class="menu-item">Recent attacks</a>
+          <a href="/statistics" class="menu-item">Statistics</a>
+          <a href="/about" class="menu-item">About</a>
+          <button id="subscribeBtn" class="menu-item">Subscribe</button>
+          <div id="popup" class="newsletter-popup hidden">
+            <span id="closeBtn" class="close-btn">&times;</span>
+            <h2>SUBSCRIBE TO OUR NEWSLETTER!</h2>
+            <div class="input-container">
+              <input type="email" placeholder="Email" />
             </div>
-      
-            <div class="search-container">
-              <input type="text" class="search-bar" id="searchInput" placeholder="Search" />
-              <div id="searchResults" class="search-results"></div>
-            </div>
+            <button id="joinBtn" type="submit">Join</button>
           </div>
-        <div class="main">
-            <div class="filter-bar">
-                <a href="#" id="filter-all" class="filter-item">ALL</a>
-                <a href="#" id="filter-location" class="filter-item">LOCATION</a>
-                <a href="#" id="filter-collaborator" class="filter-item">COLLABORATOR</a>
-                <a href="#" id="filter-group" class="filter-item">TERRORIST GROUP</a>
-            </div>
-    
-            <div class="results-title">RESULTS</div>
-            <div class="results-container" id="resultsContainer"></div>
         </div>
+
+        <div class="search-container">
+          <input
+            type="text"
+            class="search-bar"
+            id="searchInput"
+            placeholder="Search"
+          />
+          <div id="searchResults" class="search-results"></div>
+        </div>
+      </div>
+      <div class="main">
+        <div class="filter-bar">
+          <a href="#" id="filter-all" class="filter-item">ALL</a>
+          <a href="#" id="filter-location" class="filter-item">LOCATION</a>
+          <a href="#" id="filter-collaborator" class="filter-item"
+            >COLLABORATOR</a
+          >
+          <a href="#" id="filter-group" class="filter-item">TERRORIST GROUP</a>
+        </div>
+
+        <div class="results-title">RESULTS</div>
+        <div class="results-container" id="resultsContainer"></div>
+      </div>
     </div>
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-
+      document.addEventListener("DOMContentLoaded", function () {
         var searchInput = document.getElementById("searchInput");
-        searchInput.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                const query = searchInput.value.trim();
-                if (query.length > 0) {
-                    localStorage.setItem("query", query);
-                    window.location.href = `/searchResults`;
-                }
+        searchInput.addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            const query = searchInput.value.trim();
+            if (query.length > 0) {
+              localStorage.setItem("query", query);
+              window.location.href = `/searchResults`;
             }
+          }
         });
 
-        const resultsContainer = document.getElementById('resultsContainer');
-        const filterAll = document.getElementById('filter-all');
-        const filterLocation = document.getElementById('filter-location');
-        const filterCollaborator = document.getElementById('filter-collaborator');
-        const filterGroup = document.getElementById('filter-group');
-        
+        const resultsContainer = document.getElementById("resultsContainer");
+        const filterAll = document.getElementById("filter-all");
+        const filterLocation = document.getElementById("filter-location");
+        const filterCollaborator = document.getElementById(
+          "filter-collaborator"
+        );
+        const filterGroup = document.getElementById("filter-group");
+
         let allResults = [];
 
-        const query = localStorage.getItem('query');
-        
+        const query = localStorage.getItem("query");
+
         if (query) {
-            searchInput.value = query;  
-            fetchResults(query);
+          searchInput.value = query;
+          fetchResults(query);
         }
-    
+
         function fetchResults(query) {
-            fetch(`/api/searchResults?query=${encodeURIComponent(query)}`)
-                .then(response => response.json())
-                .then(data => {
-                    allResults = data[0];
-                    const count1 = data[1][0]['count(*)'];
-                    const count2 = data[2][0]['count(*)'];
-                    const count3 = data[3][0]['count(*)'];
-                    localStorage.setItem('resultCountGName', count1);
-                    localStorage.setItem('resultCountLocation', count2);
-                    localStorage.setItem('resultCountCollab', count3);
-                    displayResults(allResults);
-                    updateFilterCounts(allResults);
-                })
-                .catch(error => console.error('Error fetching search results:', error));
+          fetch(`/api/searchResults?query=${encodeURIComponent(query)}`)
+            .then((response) => response.json())
+            .then((data) => {
+              allResults = data[0];
+              const count1 = data[1][0]["count(*)"];
+              const count2 = data[2][0]["count(*)"];
+              const count3 = data[3][0]["count(*)"];
+              localStorage.setItem("resultCountGName", count1);
+              localStorage.setItem("resultCountLocation", count2);
+              localStorage.setItem("resultCountCollab", count3);
+              displayResults(allResults);
+              updateFilterCounts(allResults);
+            })
+            .catch((error) =>
+              console.error("Error fetching search results:", error)
+            );
         }
-    
+
         function displayResults(results) {
-            resultsContainer.innerHTML = '';
-            if (results.length === 0) {
-                resultsContainer.innerHTML = '<p>No results found for this search.</p>';
-                return;
-            }
-    
-            results.forEach(result => {
-                const resultDiv = document.createElement('div');
-                resultDiv.className = 'result';
-    
-                const resultImage = document.createElement('img');
-                resultImage.src = result.image || '../pictures/searchPic.jpg';
-                resultImage.alt = 'Result Image';
-    
-                const resultDetails = document.createElement('div');
-                resultDetails.className = 'result-details';
-                resultDetails.innerHTML = `
-                    <strong>Author:</strong> ${result.collaborator_username}<br />
-                    <strong>Location:</strong> ${result.city}, ${result.country_txt}, ${result.region_txt}<br />
+          resultsContainer.innerHTML = "";
+          if (results.length === 0) {
+            resultsContainer.innerHTML =
+              "<p>No results found for this search.</p>";
+            return;
+          }
+
+          results.forEach((result) => {
+            const resultDiv = document.createElement("div");
+            resultDiv.className = "result";
+
+            const resultImage = document.createElement("img");
+            resultImage.src = result.image || "../pictures/searchPic.jpg";
+            resultImage.alt = "Result Image";
+
+            const resultDetails = document.createElement("div");
+            resultDetails.className = "result-details";
+            resultDetails.innerHTML = `
+                    <strong>Author:</strong> ${
+                      result.collaborator_username
+                    }<br />
+                    <strong>Location:</strong> ${result.city}, ${
+              result.country_txt
+            }, ${result.region_txt}<br />
                     <strong>Casualties:</strong> ${result.nkill} <br />
-                    <strong>Date:</strong> ${result.iday} ${new Date(result.iyear, result.imonth - 1, result.iday).toLocaleString('default', { month: 'long' })} ${result.iyear}<br />
+                    <strong>Date:</strong> ${result.iday} ${new Date(
+              result.iyear,
+              result.imonth - 1,
+              result.iday
+            ).toLocaleString("default", { month: "long" })} ${
+              result.iyear
+            }<br />
                     <strong>Details:</strong> ${result.summary}<br />
                     <strong>Group:</strong> ${result.gname}
                 `;
-    
-                resultDiv.appendChild(resultImage);
-                resultDiv.appendChild(resultDetails);
-                resultsContainer.appendChild(resultDiv);
-            });
+
+            resultDiv.appendChild(resultImage);
+            resultDiv.appendChild(resultDetails);
+            resultsContainer.appendChild(resultDiv);
+          });
         }
 
         function updateFilterCounts(results) {
-            const allCount = results.length;
-          
-            filterAll.textContent = `ALL (${allCount})`;
-            const countCollab = localStorage.getItem("resultCountCollab");
-            const countLoc = localStorage.getItem("resultCountLocation");
+          const allCount = results.length;
 
-            filterLocation.textContent = `LOCATION (${countLoc})`;
-            filterCollaborator.textContent = `COLLABORATOR (${countCollab})`;
-            const countG = localStorage.getItem("resultCountGName");
-            filterGroup.textContent = `TERRORIST GROUP (${countG})`;
+          filterAll.textContent = `ALL (${allCount})`;
+          const countCollab = localStorage.getItem("resultCountCollab");
+          const countLoc = localStorage.getItem("resultCountLocation");
+
+          filterLocation.textContent = `LOCATION (${countLoc})`;
+          filterCollaborator.textContent = `COLLABORATOR (${countCollab})`;
+          const countG = localStorage.getItem("resultCountGName");
+          filterGroup.textContent = `TERRORIST GROUP (${countG})`;
         }
-
-
 
         function filterResults(criteria) {
-            let filteredResults;
-            switch (criteria) {
-                case 'location':
-                    filteredResults = allResults.filter(result => result.city);
-                    break;
-                case 'collaborator':
-                    filteredResults = allResults.filter(result => result.collaborator_username);
-                    break;
-                case 'group':
-                    filteredResults = allResults.filter(result => result.gname);
-                    break;
-                default:
-                    filteredResults = allResults;
-            }
-            displayResults(filteredResults);
+          let filteredResults;
+          switch (criteria) {
+            case "location":
+              filteredResults = allResults.filter((result) => result.city);
+              break;
+            case "collaborator":
+              filteredResults = allResults.filter(
+                (result) => result.collaborator_username
+              );
+              break;
+            case "group":
+              filteredResults = allResults.filter((result) => result.gname);
+              break;
+            default:
+              filteredResults = allResults;
+          }
+          displayResults(filteredResults);
         }
 
-        filterAll.addEventListener('click', () => filterResults('all'));
-        filterLocation.addEventListener('click', () => filterResults('location'));
-        filterCollaborator.addEventListener('click', () => filterResults('collaborator'));
-        filterGroup.addEventListener('click', () => filterResults('group'));
+        filterAll.addEventListener("click", () => filterResults("all"));
+        filterLocation.addEventListener("click", () =>
+          filterResults("location")
+        );
+        filterCollaborator.addEventListener("click", () =>
+          filterResults("collaborator")
+        );
+        filterGroup.addEventListener("click", () => filterResults("group"));
       });
     </script>
-</body>
+  </body>
 </html>
