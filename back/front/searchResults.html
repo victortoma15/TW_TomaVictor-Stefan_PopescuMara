@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="searchResults.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">GloT</div>
+            <div class="menu">
+              <a href="/main" class="menu-item">Home</a>
+              <a href="/profile" class="menu-item">Profile</a>
+              <a href="/recentAttacks" class="menu-item">Attacks</a>
+              <a href="statistics.html" class="menu-item">Statistics</a>
+              <a href="about.html" class="menu-item">About</a>
+              <button id="subscribeBtn" class="menu-item">Subscribe</button>
+              <div id="popup" class="newsletter-popup hidden">
+                <span id="closeBtn" class="close-btn">&times;</span>
+                <h2>SUBSCRIBE TO OUR NEWSLETTER!</h2>
+                <div class="input-container">
+                  <input type="email" placeholder="Email" />
+                </div>
+                <button id="joinBtn" type="submit">Join</button>
+              </div>
+            </div>
+      
+            <div class="search-container">
+              <input type="text" class="search-bar" id="searchInput" placeholder="Search" />
+              <div id="searchResults" class="search-results"></div>
+            </div>
+          </div>
+        <div class="main">
+            <div class="filter-bar">
+                <a href="#" class="filter-item">ALL(NUMBER)</a>
+                <a href="#" class="filter-item">SUMMARY(NUMBER)</a>
+                <a href="#" class="filter-item">COLLABORATOR(NUMBER)</a>
+                <a href="#" class="filter-item">TERRORIST GROUP(NUMBER)</a>
+            </div>
+    
+            <div class="results-title">RESULTS</div>
+            <div class="results-container">
+                <div class="result">
+                    <img src="https://via.placeholder.com/150" alt="Image 1">
+                    <div class="result-details">Details: Ajbsdasugygasc Ajdbasbjac Ahsbdysuaisd Ajshdascvjschcv</div>
+                </div>
+                <div class="result">
+                    <img src="https://via.placeholder.com/150" alt="Image 2">
+                    <div class="result-details">Details: Ajbsdasugygasc Ajdbasbjac Ahsbdysuaisd Ajshdascvjschcv</div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</body>
+</html>

@@ -59,6 +59,26 @@ body, html {
 .search-bar.open {
     width: 300px; 
 }
+
+.search-results {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  position: absolute;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 100%;
+  display: none;
+  z-index: 10;
+}
+
+.search-results .result-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.search-results .result-item:hover {
+  background-color: #f0f0f0;
+}
   
 
 .menu {
