@@ -78,6 +78,32 @@
     position: relative;
   }
 
+  .weapon-options {
+    display: none;
+    position: absolute;
+    left: 10%;
+    top: auto;
+    padding: 10px;
+  }
+
+  .weapon-options.show {
+    display: block;
+    position: relative;
+  }
+
+  .region-options {
+    display: none;
+    position: absolute;
+    left: 10%;
+    top: auto;
+    padding: 10px;
+  }
+
+  .region-options.show {
+    display: block;
+    position: relative;
+  }
+
 .hidden {
     display: none;
 }

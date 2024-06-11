@@ -4,7 +4,7 @@ const path = require('path');
 const { login } = require('./controller/loginController');
 const { registerUser } = require('./controller/registerController');
 const { sendingData } = require('./controller/profileController');
-const { recentAttacks } = require('./controller/recentAttacksController');
+const { recentAttacks, weaponTypes, regions } = require('./controller/recentAttacksController');
 
 
 const server = http.createServer((req, res) => {
@@ -22,12 +22,20 @@ const server = http.createServer((req, res) => {
         serveFile(res, path.join(__dirname, 'front', 'collabProfile.html'), 'text/html');
     } else if (req.url === '/recentAttacks' && req.method === 'GET') {
         serveFile(res, path.join(__dirname, 'front', 'recent_attacks.html'), 'text/html');
-    } else if (req.url === '/api/profile' && req.method === 'GET') {
+    } else if (req.url === '/searchResults' && req.method === 'GET') {
+        serveFile(res, path.join(__dirname, 'front', 'searchResults.html'), 'text/html');
+    }else if (req.url === '/api/profile' && req.method === 'GET') {
         sendingData(req, res);
     }else if (req.url.startsWith('/api/recentAttacks') && req.method === 'GET') {
         console.log(req.url);
         recentAttacks(req, res);
-    } else if (req.url.match('\.css$')) {
+    } else if (req.url === '/api/weaponsType' && req.method === 'GET') {
+        console.log(req.url);
+        weaponTypes(req, res);
+    }else if (req.url === '/api/regions' && req.method === 'GET') {
+        console.log(req.url);
+        regions(req, res);
+    }else if (req.url.match('\.css$')) {
         serveFile(res, path.join(__dirname, 'front', req.url), 'text/css');
     } else if (req.url.match('/pictures/')) {
         serveFile(res, path.join(__dirname, 'front', req.url), 'image/jpeg');
