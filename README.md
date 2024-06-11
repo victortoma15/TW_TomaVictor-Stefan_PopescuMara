@@ -457,13 +457,13 @@
             Interfața utilizatorului
         </h3>
         <p>Sign Up</p>
-        <img src="pictures/screenshots/register.png" width="750">
+        <img src="/pictures/screenshots/register.png" width="750">
         <p>Sign In</p>
         <img src="/pictures/screenshots/login_page.png" width="750">
         <p>Pagina Acasă</p>
         <img src="/pictures/screenshots/home_page.png" width="750">
         <p>Profil</p>
-        <img src="/pictures/screenshots/profile.png" width="750">
+        <img src="/pictures/screenshots/profile_page.png" width="750">
         <p>Atacuri Recente</p>
         <img src="/pictures/screenshots/recent_attacks.png" width="750">
         <p>Pagina cu rezultatele căutarilor</p>
